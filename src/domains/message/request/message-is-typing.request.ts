@@ -1,4 +1,4 @@
-import { IsEnum } from 'class-validator';
+import { IsEnum, IsString } from 'class-validator';
 import { ROLE_NAME } from 'shared/enums/role-name.enum';
 import { BooleanValidator } from 'shared/validators/boolean-query.validator';
 
@@ -8,4 +8,7 @@ export class MessageIsTypingREQ {
 
   @BooleanValidator()
   isTyping: boolean;
+
+  @IsString()
+  receiverId: string;
 }
