@@ -136,7 +136,7 @@ export class ConversationGateway implements OnGatewayInit, OnGatewayConnection, 
     const query = { page: body.page, limit: body.limit };
     const req = { senderRole: body.senderRole, receiverId: body.receiverId, receiverRole: body.receiverRole };
     const conversation = await this.conversationService.findOneByParticipants(userId, req);
-    if (!conversation) return { event: WS_EVENT.CONVERSATION.GET_CONVERSATION, data: [] };
+    if (!conversation) return { event: WS_EVENT.CONVERSATION.GET_CONVERSATION, data: {} };
     const data = await this.messageService.findByConversation(userId, req, conversation._id, query);
     const countUnRead = await this.conversationService.countUnRead(userId, body.senderRole);
     const preview = await this.conversationService.findPreviewsOne(userId, body.senderRole);
